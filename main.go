@@ -7,9 +7,9 @@ package main
 import (
 	"log"
 	"strings"
-	"tbot/analyzer"
-	"tbot/config"
-	"tbot/db"
+	"tpgbot/analyzer"
+	"tpgbot/config"
+	"tpgbot/db"
 	"time"
 
 	"gopkg.in/telegram-bot-api.v4"
