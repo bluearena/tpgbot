@@ -9,6 +9,7 @@ import (
 	"strings"
 	"tpgbot/analyzer"
 	"tpgbot/config"
+
 	"tpgbot/currency"
 	"tpgbot/db"
 	"time"
