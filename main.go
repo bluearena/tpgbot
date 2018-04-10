@@ -7,9 +7,10 @@ package main
 import (
 	"log"
 	"strings"
-	"tbot/analyzer"
-	"tbot/config"
-	"tbot/db"
+	"tpgbot/analyzer"
+	"tpgbot/config"
+	"tpgbot/currency"
+	"tpgbot/db"
 	"time"
 
 	"gopkg.in/telegram-bot-api.v4"
@@ -50,6 +51,14 @@ func botStarter(timeout int) {
 			if strings.Compare(answer, "") != 0 {
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, answer)
 				msg.ReplyToMessageID = update.Message.MessageID
+				bot.Send(msg)
+			}
+			//Commands reactions
+			if strings.Compare(lg.Text, "/currency") == 0 {
+				var c chan string = make(chan string)
+				go currency.GetCurrency(c)
+				cur := <-c
+				msg := tgbotapi.NewMessage(update.Message.Chat.ID, cur)
 				bot.Send(msg)
 			}
 		}
